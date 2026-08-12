@@ -1,0 +1,15 @@
+name: semgrep_SAST
+
+on:
+  push:
+    branches: [ "**" ]
+
+jobs:
+  semgrep:
+    runs-on: ubuntu-latest
+    container:
+      image: semgrep/semgrep
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Semgrep
+        run: semgrep scan --config auto .
